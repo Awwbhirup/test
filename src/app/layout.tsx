@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   description: "Leveraging Web3 for Social Responsibility. Flagship Hackathon by CSI-VIT.",
 };
 
+import { SmoothScroll } from "@/components/ui/smooth-scroll";
 import { AudioPlayer } from "@/components/ui/audio-player";
 
 export default function RootLayout({
@@ -28,9 +29,11 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
       </head>
       <body className={cn("min-h-screen bg-background font-sans antialiased overflow-x-hidden selection:bg-cyber-pink selection:text-black")}>
-        <div className="grain-overlay" />
-        {children}
-        <AudioPlayer />
+        <SmoothScroll>
+            <div className="grain-overlay" />
+            {children}
+            <AudioPlayer />
+        </SmoothScroll>
       </body>
     </html>
   );

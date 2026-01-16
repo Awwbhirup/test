@@ -1,9 +1,16 @@
+import dynamic from "next/dynamic";
 import { GlitchButton } from "@/components/ui/glitch-button";
 import { Marquee } from "@/components/ui/marquee";
+import { TextReveal } from "@/components/ui/text-reveal";
 import { GlassCard } from "@/components/ui/glass-card";
 import { ArrowRight, Code2, Globe, Lock, Cpu, Palette } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+
+const HeroScene = dynamic(() => import("@/components/canvas/hero-scene"), { 
+  ssr: false,
+  loading: () => <div className="absolute inset-0 z-0 bg-transparent" />
+});
 
 export default function LandingPage() {
   return (
@@ -14,47 +21,24 @@ export default function LandingPage() {
          <Image src="/assets/img/debris-1.png" alt="debris" width={30} height={30} className="absolute bottom-1/3 right-20 opacity-30 animate-float delay-1000 rotate-45" />
       </div>
 
-      {/* Hero Section */}
-      <section className="relative flex h-screen flex-col items-center justify-center overflow-hidden">
-        {/* Parallax Layers */}
-        <div className="absolute inset-0 -z-20">
-            <Image 
-                src="/assets/img/hero-parallax.png" 
-                alt="Cyberpunk City" 
-                fill 
-                className="object-cover opacity-60 scale-105 animate-pulse-slow"
-                priority
-            />
-             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-        </div>
-        
-        {/* Massive Japanese Title Layer */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 w-full text-center">
-             <Image 
-                src="/morepics/DEVスペース.png" 
-                alt="Japanese Title" 
-                width={1200}
-                height={400} 
-                className="opacity-10 w-full object-contain"
-             />
-        </div>
+      {/* Hero Content */}
+      <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden pt-20">
+        <div className="z-10 text-center space-y-8 mix-blend-difference flex flex-col items-center">
+          <p className="font-mono text-sm tracking-[0.5em] text-cyber-pink animate-pulse">
+            EST. 2026 // NEON_CITY
+          </p>
+          
+          <div className="flex flex-col items-center mb-4">
+              <TextReveal text="DEVSPACE" className="text-8xl md:text-[12rem] font-black tracking-tighter text-white leading-none" delay={0.2} />
+              <TextReveal text="HACKATHON" className="text-6xl md:text-[8rem] font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-white opacity-80" delay={0.4} />
+          </div>
 
-        <div className="container z-10 flex flex-col items-center text-center relative">
-          <h2 className="mb-4 font-jp text-xl font-bold tracking-[0.5em] text-cyber-cyan animate-pulse">
-            デブスペース 2026
-          </h2>
-          <h1 className="mb-6 font-sans text-6xl font-black uppercase leading-none tracking-tighter text-white sm:text-8xl md:text-9xl relative drop-shadow-[0_0_15px_rgba(0,240,255,0.5)]">
-            DevSpace
-            <br />
-            <span className="bg-gradient-to-r from-cyber-cyan via-white to-cyber-pink bg-clip-text text-transparent">
-              2026
-            </span>
-          </h1>
-          <p className="mb-8 max-w-2xl text-lg font-light text-muted-foreground md:text-xl italic">
-            &quot;Leveraging Web3 for Social Responsibility.&quot;
+          <p className="max-w-xl text-lg font-light text-muted-foreground md:text-xl italic">
+            &quot;Leveraging Web3 for Social Responsibility&quot;
           </p>
 
-          <div className="flex flex-wrap gap-4">
+          {/* CTA Buttons */}
+          <div className="flex flex-wrap gap-4 justify-center">
             <Link href="/login">
               <GlitchButton className="bg-cyber-pink text-white border-cyber-pink hover:shadow-[0_0_20px_#ff003c]">
                 INITIALIZE_SYSTEM
@@ -66,6 +50,22 @@ export default function LandingPage() {
                 </GlitchButton>
             </Link>
           </div>
+        </div>
+
+        {/* Hero Scene (Canvas) - Temporarily disabled due to R3F crash */}
+        <div className="absolute inset-0 z-0">
+          {/* <HeroScene /> */}
+        </div>
+        
+        {/* Massive Japanese Title Layer (Background) */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 w-full text-center pointer-events-none">
+             <Image 
+                src="/morepics/DEVスペース.png" 
+                alt="Japanese Title" 
+                width={1200}
+                height={400} 
+                className="opacity-10 w-full object-contain"
+             />
         </div>
       </section>
 
