@@ -39,16 +39,15 @@ export function AudioPlayer() {
     return () => window.removeEventListener("click", handleInteraction);
   }, [hasInteracted, isMuted, playAmbient]);
 
-  // Click Sound effect on route change or global click
   useEffect(() => {
-      const handleClick = () => {
-          if(!isMuted && hasInteracted) playClick();
-      }
-      window.addEventListener("click", handleClick);
-      return () => window.removeEventListener("click", handleClick);
+    const handleClick = () => {
+      if (!isMuted && hasInteracted) playClick();
+    };
+
+    window.addEventListener("click", handleClick);
+    return () => window.removeEventListener("click", handleClick);
   }, [isMuted, hasInteracted, playClick]);
 
-  // Mute Toggle
   const toggleMute = () => {
     if (isMuted) {
       setIsMuted(false);

@@ -3,16 +3,10 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Providers } from "@/components/providers";
 import { CyberDock } from "@/components/shared/cyber-dock";
-
-// In a real app, you'd import fonts from @next/font
-// import { Inter } from "next/font/google";
-// const inter = Inter({ subsets: ["latin"] });
-
-import Link from "next/link"; // Not used but good practice
 import localFont from "next/font/local";
 
 const naganoshi = localFont({ 
-  src: "../../public/assets/fonts/Naganoshi.ttf",
+  src: "./fonts/Naganoshi.ttf",
   variable: "--font-naganoshi"
 });
 

@@ -9,8 +9,6 @@ import { ArrowRight, Code2, Globe, Lock, Cpu, Palette } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
-// HeroScene import removed to fix R3F crash
-
 export default function LandingPage() {
   return (
     <div className="relative min-h-screen overflow-x-hidden">
@@ -72,9 +70,9 @@ export default function LandingPage() {
           </div>
         </div>
 
-        {/* Hero Scene (Canvas) - Temporarily disabled due to R3F crash */}
+        {/* Hero Scene (Canvas) */}
         <div className="absolute inset-0 z-0">
-          {/* <HeroScene /> */}
+          {/* Scene temporarily disabled for performance */}
         </div>
         
         {/* Massive Japanese Title Layer (Background) */}
@@ -330,7 +328,7 @@ const timeline = [
   },
   {
     time: "11:00PM",
-    title: "something",
-    sub: "something idk man"
+    title: "closing ceremony",
+    sub: "awards and conclusion"
   },
 ];
