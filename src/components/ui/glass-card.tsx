@@ -51,7 +51,7 @@ export function GlassCard({ children, className, gradient = "from-purple-500/20 
         transformStyle: "preserve-3d",
       }}
       className={cn(
-        "relative w-full rounded-xl border border-white/10 bg-black/40 backdrop-blur-md transition-colors hover:border-white/30",
+        "relative w-full rounded-xl border border-white/10 bg-black/60 backdrop-blur-md transition-colors hover:border-white/30 overflow-hidden",
         className
       )}
       {...props}
@@ -62,6 +62,9 @@ export function GlassCard({ children, className, gradient = "from-purple-500/20 
           gradient
         )}
       />
+      {/* Noise Texture */}
+      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none bg-[url('/assets/external/texture.jpg')] bg-cover mix-blend-overlay" />
+      
       <div style={{ transform: "translateZ(50px)" }} className="relative z-10 p-6">
         {children}
       </div>
