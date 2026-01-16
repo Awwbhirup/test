@@ -69,151 +69,195 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Stats Ticker - Cyberpunk HUD */}
+      <div className="border-y border-cyber-cyan/20 bg-black/80 py-4 backdrop-blur-md relative overflow-hidden my-8">
+        <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-cyber-cyan to-transparent opacity-50" />
+        <Marquee className="text-2xl font-bold uppercase tracking-widest text-white/80 font-mono">
+            {["3500+ Footfall", "12,000+ Participants", "₹10,00,000 Prize Pool"].map((stat, i) => (
+                 <div key={i} className="flex items-center gap-6 mx-8 group">
+                     <span className="h-2 w-2 bg-cyber-pink rotate-45 group-hover:animate-spin"></span>
+                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/50">{stat}</span>
+                 </div>
+            ))}
+        </Marquee>
+        <div className="absolute inset-x-0 bottom-0 h-[1px] bg-gradient-to-r from-transparent via-cyber-pink to-transparent opacity-50" />
+      </div>
+
+      {/* Visual Glue: Vertical Line */}
+      <div className="w-[1px] h-[100px] bg-gradient-to-b from-transparent via-cyber-cyan/50 to-transparent mx-auto opacity-50 animate-pulse my-8" />
+
       {/* Tracks Section - Katana Style */}
-      <section className="relative py-32 overflow-hidden bg-black">
+      <section className="relative py-24 overflow-hidden bg-black">
         <div className="container relative z-10">
-            <div className="flex items-center justify-center mb-16">
-                 <h2 className="font-sans text-sm font-bold uppercase tracking-widest text-[#8d8d8d]">
-                    TRACK 1
+            <div className="flex items-center justify-center mb-12">
+                 <h2 className="font-sans text-xs font-bold uppercase tracking-[0.2em] text-[#8d8d8d] border border-white/10 px-4 py-1 rounded-full">
+                    TRACK 1: RESILIENCE
                 </h2>
             </div>
             
             <div className="relative flex flex-col items-center justify-center text-center">
                  {/* Floating Katana */}
-                 <div className="absolute top-[-100px] left-1/2 -translate-x-1/2 w-[800px] z-20 pointer-events-none">
-                     <Image src="/assets/img/katana.png" alt="Katana" width={800} height={200} className="drop-shadow-2xl animate-float-slow" />
+                 <div className="absolute top-[-80px] left-1/2 -translate-x-1/2 w-[700px] md:w-[900px] z-20 pointer-events-none mix-blend-screen">
+                     <Image src="/assets/img/katana.png" alt="Katana" width={900} height={200} className="drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] animate-float-slow" />
                  </div>
                  
-                 <div className="relative z-10 mt-32">
-                     <h1 className="text-7xl md:text-9xl font-bold text-[#bfaea4] mb-4 font-sans tracking-tighter">
-                        Fine! I&apos;ll do it Myself
+                 <div className="relative z-10 mt-24 md:mt-32">
+                     <h1 className="text-6xl md:text-9xl font-bold text-[#beb0a6] mb-6 font-sans tracking-tighter leading-[0.9]">
+                        Fine! I&apos;ll<br/>do it Myself
                      </h1>
-                     <p className="max-w-2xl mx-auto text-[#8d8d8d] text-lg leading-relaxed">
-                        Explore how systems handle failure by preserving context, guiding recovery, and staying useful when things don&apos;t go as planned.
+                     <p className="max-w-xl mx-auto text-[#8d8d8d] text-base md:text-lg leading-relaxed font-mono">
+                        &gt; Explore how systems handle failure by preserving context, guiding recovery, and staying useful.
                      </p>
                  </div>
 
                  {/* Idea Submission Badge */}
-                 <div className="absolute top-0 right-0">
+                 <div className="absolute top-10 right-10 hidden md:block">
                      <span className="bg-[#ff4d29] text-white px-6 py-2 rounded-full font-bold uppercase text-xs tracking-wider shadow-[0_0_20px_#ff4d29]">
                         Idea Submission
                      </span>
                  </div>
                  
                  {/* Bottom Katana for Loop effect */}
-                 <div className="absolute bottom-[-150px] left-1/2 -translate-x-1/2 w-[800px] z-20 pointer-events-none opacity-50 blur-sm">
+                 <div className="absolute bottom-[-150px] left-1/2 -translate-x-1/2 w-[800px] z-20 pointer-events-none opacity-30 blur-sm mix-blend-overlay">
                      <Image src="/assets/img/katana.png" alt="Katana" width={800} height={200} className="rotate-180" />
                  </div>
             </div>
         </div>
       </section>
 
+       {/* Visual Glue: Marquee */}
+       <div className="py-4 bg-black border-y border-white/5 opacity-50">
+            <Marquee className="text-sm font-mono text-[#8d8d8d] tracking-widest uppercase">
+                SYSTEM NORMAL // INITIALIZING // DATE: 2026 // DEVSPACE // HACKATHON // READY PLAYER ONE //
+            </Marquee>
+       </div>
+
        {/* Timeline Section - Cream & Train */}
-      <section className="bg-cream py-32 relative overflow-hidden text-[#1a103c]">
+      <section className="bg-cream py-24 relative overflow-hidden text-[#1a103c]">
          <div className="container relative z-10">
-            <h2 className="mb-8 font-sans text-6xl font-bold tracking-tighter sm:text-8xl">
-              Timeline
-            </h2>
-            
-            {/* Date Badge */}
-            <div className="inline-block bg-[#ff4d29] p-6 rounded-xl text-white mb-20 shadow-lg transform -rotate-3">
-                <div className="text-2xl font-mono mb-2">cs hall</div>
-                <div className="bg-[#e6e6e6] text-[#333] p-4 rounded text-center">
-                    <div className="text-sm font-bold">FEB</div>
-                    <div className="text-4xl font-black">12</div>
+            <div className="flex flex-col md:flex-row items-center gap-12">
+                <div className="flex-1">
+                     <h2 className="mb-8 font-sans text-6xl font-black tracking-tighter sm:text-8xl">
+                      Time<br/>Line
+                    </h2>
+                    
+                    {/* Date Badge */}
+                    <div className="inline-block bg-[#ff4d29] p-6 rounded-xl text-white mb-20 shadow-xl transform -rotate-2 hover:rotate-0 transition-transform">
+                        <div className="text-2xl font-mono mb-2 border-b border-white/20 pb-2">CS HALL A</div>
+                        <div className="bg-[#e6e6e6] text-[#333] p-4 rounded text-center shadow-inner">
+                            <div className="text-sm font-bold uppercase tracking-wider">February</div>
+                            <div className="text-5xl font-black leading-none mt-1">12</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="flex-1 relative h-[500px] w-full">
+                    {/* Train Illustration */}
+                    <div className="absolute inset-0 z-10 flex items-center justify-center">
+                        <Image 
+                            src="/assets/img/train.png" 
+                            alt="Train" 
+                            fill 
+                            className="object-contain drop-shadow-2xl scale-125 hover:scale-130 transition-transform duration-700"
+                        />
+                    </div>
                 </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-                {/* Train Illustration */}
-                <div className="relative h-[400px] w-full">
-                    <Image 
-                        src="/assets/img/train.png" 
-                        alt="Train" 
-                        fill 
-                        className="object-contain object-left-bottom drop-shadow-2xl"
-                    />
-                </div>
-
-                {/* Timeline Points */}
-                <div className="space-y-12 border-l-4 border-[#2d3a5e] pl-8 relative">
-                    {timeline.map((item, id) => (
-                        <div key={id} className="relative group">
-                            {/* Dot */}
-                            <div className="absolute -left-[42px] top-1 h-5 w-5 rounded-full bg-[#5b7c99] border-4 border-cream" />
-                            
-                            <h3 className="text-3xl font-bold mb-2">{item.title}</h3>
-                            <p className="font-mono text-sm opacity-60 mb-1 tracking-widest uppercase">{item.sub}</p>
-                            <p className="text-xl font-medium opacity-80">{item.time}</p>
-                        </div>
-                    ))}
-                </div>
+            {/* Timeline Points Horizontal/Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-12 border-t-2 border-[#1a103c]/10 pt-12">
+                 {timeline.map((item, id) => (
+                    <div key={id} className="relative group pt-8 border-t border-[#1a103c] transition-all hover:-translate-y-2">
+                         {/* Dot */}
+                        <div className="absolute -top-[5px] left-0 h-2 w-2 rounded-full bg-[#ff4d29]" />
+                        <p className="font-mono text-xs opacity-60 mb-1 tracking-widest uppercase">{item.time}</p>
+                        <h3 className="text-xl font-bold mb-2 leading-tight group-hover:text-[#ff4d29] transition-colors">{item.title}</h3>
+                        <p className="text-sm opacity-80 font-medium">{item.sub}</p>
+                    </div>
+                 ))}
             </div>
          </div>
       </section>
 
+      {/* Visual Glue: Vertical Line */}
+      <div className="w-[1px] h-[80px] bg-gradient-to-b from-[#EBE9E0] via-cyber-cyan to-[#111] mx-auto opacity-80" />
+
       {/* Sponsors - Bento Grid */}
-      <section className="py-24 bg-[#111] relative text-white">
+      <section className="py-16 bg-[#111] relative text-white border-t border-white/10">
           <div className="container">
-              <div className="flex justify-between items-end mb-12">
-                   <h2 className="text-6xl font-bold tracking-tighter">Sponsor</h2>
-                   <div className="bg-[#ff4d29] text-white px-6 py-2 rounded-full font-bold uppercase text-xs tracking-wider">
-                        Idea Submission
+              <div className="flex justify-between items-end mb-16">
+                   <h2 className="text-6xl font-bold tracking-tighter">Sponsors</h2>
+                   <div className="hidden md:flex flex-col items-end">
+                       <span className="text-xs font-mono text-gray-500 mb-1">SUPPORTED BY</span>
+                       <div className="bg-[#ff4d29] text-white px-6 py-2 rounded-full font-bold uppercase text-xs tracking-wider">
+                            Join the Alliance
+                       </div>
                    </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-[600px]">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(200px,auto)]">
                   {/* Large Card - Camera */}
-                  <div className="row-span-2 relative overflow-hidden rounded-3xl border border-white/10 bg-[#0a0a0a] group">
+                  <div className="row-span-2 relative overflow-hidden rounded-3xl border border-white/10 bg-[#0a0a0a] group min-h-[400px]">
                       <Image 
                         src="/assets/img/camera.png" 
                         alt="Camera" 
                         fill 
-                        className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-500"
+                        className="object-cover opacity-80 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-700"
                       />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
                       <div className="absolute bottom-8 left-8">
-                          <h3 className="text-2xl font-bold">WOLFRAM</h3>
+                          <h3 className="text-3xl font-bold mb-2">Wolfram</h3>
+                          <p className="text-white/60 text-sm max-w-[200px]">Computational intelligence for the next generation.</p>
                       </div>
                   </div>
                   
                   {/* Stat Card */}
-                  <div className="bg-[#1a1a1a] rounded-3xl p-8 flex flex-col justify-center items-center text-center border border-white/10 hover:border-[#ff4d29] transition-colors">
-                      <p className="text-muted-foreground mb-4">Insert some statistic</p>
-                      <h3 className="text-5xl font-bold mb-4">Key feature</h3>
-                       <p className="text-muted-foreground">Insert some statistic or metric name</p>
+                  <div className="bg-[#1a1a1a] rounded-3xl p-8 flex flex-col justify-center items-center text-center border border-white/10 hover:border-[#ff4d29] hover:bg-[#1f1f1f] transition-all group">
+                      <p className="text-muted-foreground mb-4 text-xs font-mono uppercase tracking-widest">Prize Pool</p>
+                      <h3 className="text-5xl font-bold mb-2 text-[#ff4d29] group-hover:scale-110 transition-transform">₹10L+</h3>
+                       <p className="text-muted-foreground text-sm">Total cash prizes & grants</p>
                   </div>
 
                   {/* Rating Card */}
-                  <div className="bg-[#1a1a1a] rounded-3xl p-8 flex flex-col justify-center items-center text-center border border-white/10">
-                       <div className="flex gap-1 text-[#ff4d29] mb-4">
+                  <div className="bg-[#1a1a1a] rounded-3xl p-8 flex flex-col justify-center items-center text-center border border-white/10 hover:border-cyber-cyan transition-colors">
+                       <div className="flex gap-1 text-[#ff4d29] mb-4 text-2xl">
                            {[...Array(5)].map((_,i) => <span key={i}>★</span>)}
                        </div>
-                       <h3 className="text-6xl font-bold mb-2">100k</h3>
-                       <p className="text-2xl text-muted-foreground">users rated it</p>
+                       <h3 className="text-6xl font-bold mb-2">500+</h3>
+                       <p className="text-sm text-muted-foreground uppercase tracking-widest">Hackers Registered</p>
                   </div>
 
                   {/* Wide Wolframe Card */}
-                  <div className="col-span-1 md:col-span-2 bg-[#1a1a1a] rounded-3xl p-8 flex items-center justify-center border border-white/10 relative overflow-hidden">
+                  <div className="col-span-1 md:col-span-2 bg-[#1a1a1a] rounded-3xl p-12 flex items-center justify-between border border-white/10 relative overflow-hidden group">
                        {/* Smoke Effect */}
                         <Image 
                             src="/assets/img/smoke.png" 
                             alt="Smoke" 
-                            width={300} 
-                            height={100} 
-                            className="absolute bottom-0 left-0 opacity-50"
+                            width={500} 
+                            height={300} 
+                            className="absolute bottom-[-50px] right-[-50px] opacity-30 group-hover:opacity-50 transition-opacity duration-700 mix-blend-screen"
                         />
-                       <h3 className="text-5xl font-bold relative z-10">Wolframe</h3>
+                       <div className="relative z-10">
+                            <h3 className="text-5xl font-bold mb-4">DevFolio</h3>
+                            <button className="px-6 py-2 border border-white/30 rounded-full text-sm hover:bg-white hover:text-black transition-colors">Apply with Devfolio</button>
+                       </div>
+                       <div className="text-9xl opacity-10 font-black absolute right-10 top-1/2 -translate-y-1/2 select-none group-hover:opacity-20 transition-opacity">
+                           DEV
+                       </div>
                   </div>
                   
-                   {/* Polaroid Card (using smoke/texture as placeholder for now) */}
-                  <div className="relative bg-[#ebe9e0] rounded-sm p-4 rotate-3 transform hover:rotate-0 transition-transform duration-300 w-64 h-72 mx-auto md:mx-0 shadow-xl">
-                      <div className="bg-black h-48 w-full mb-4 relative overflow-hidden">
-                           <Image src="/assets/img/smoke.png" alt="Polaroid" fill className="object-cover opacity-80" />
+                   {/* Polaroid Card */}
+                  <div className="relative bg-[#ebe9e0] rounded-sm p-3 rotate-3 transform hover:rotate-6 hover:scale-105 transition-all duration-300 w-full h-[320px] shadow-2xl">
+                      <div className="bg-black h-[240px] w-full mb-3 relative overflow-hidden">
+                           <Image src="/assets/img/smoke.png" alt="Polaroid" fill className="object-cover opacity-60 scale-150" />
+                           <div className="absolute inset-0 flex items-center justify-center text-white/50 text-4xl font-black rotate-[-15deg]">
+                               ?
+                           </div>
                       </div>
-                      <p className="font-handwriting text-black text-sm text-center -rotate-2">
-                          wolframe tagline or smthing bro idk okay?
+                      <p className="font-handwriting text-black text-sm text-center -rotate-1 mt-2 font-bold">
+                          Coming Soon...
                       </p>
-                      <div className="absolute -top-4 left-1/2 -translate-x-1/2 text-red-500 text-4xl">📌</div>
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 text-red-600 text-3xl shadow-sm">📌</div>
                   </div>
               </div>
           </div>
