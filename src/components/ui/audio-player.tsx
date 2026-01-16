@@ -1,68 +1,80 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { Volume2, VolumeX } from "lucide-react";
-import { motion } from "framer-motion";
+import { useEffect, useState, useRef } from "react";
+import useSound from "use-sound";
+import { Volume2, VolumeX, Activity } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 export function AudioPlayer() {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef<HTMLAudioElement>(null);
+  const [isMuted, setIsMuted] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
+  const pathname = usePathname();
+  const previousPath = useRef(pathname);
 
-  const togglePlay = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play();
+  // Load Sounds
+  const [playAmbient, { stop: stopAmbient, sound: ambientSound }] = useSound("/assets/sound/ambient.mp3", { 
+    loop: true, 
+    volume: 0.5,
+    interrupt: false,
+    autoplay: true,
+  });
+
+  const [playClick] = useSound("/assets/sound/click.mp3", { 
+    volume: 1.0, 
+    interrupt: true 
+  });
+  
+  // Interaction Handler
+  useEffect(() => {
+    const handleInteraction = () => {
+      if (!hasInteracted) {
+        setHasInteracted(true);
+        if (!isMuted) {
+          playAmbient();
+        }
       }
-      setIsPlaying(!isPlaying);
+    };
+
+    window.addEventListener("click", handleInteraction);
+    return () => window.removeEventListener("click", handleInteraction);
+  }, [hasInteracted, isMuted, playAmbient]);
+
+  // Click Sound effect on route change or global click
+  useEffect(() => {
+      const handleClick = () => {
+          if(!isMuted && hasInteracted) playClick();
+      }
+      window.addEventListener("click", handleClick);
+      return () => window.removeEventListener("click", handleClick);
+  }, [isMuted, hasInteracted, playClick]);
+
+  // Mute Toggle
+  const toggleMute = () => {
+    if (isMuted) {
+      setIsMuted(false);
+      if (hasInteracted) playAmbient();
+    } else {
+      setIsMuted(true);
+      stopAmbient();
     }
   };
 
   return (
-    <div className="fixed bottom-8 right-8 z-50 flex items-center gap-4">
-      {/* Visualizer Bars */}
-      <div className="flex items-end gap-1 h-8">
-        {[...Array(5)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="w-1 bg-cyber-cyan"
-            animate={{
-              height: isPlaying ? ["20%", "100%", "50%"] : "10%",
-              backgroundColor: isPlaying ? ["#00f0ff", "#ff003c", "#fcee0a"] : "#1a103c"
-            }}
-            transition={{
-              duration: 0.5,
-              repeat: Infinity,
-              repeatType: "reverse",
-              delay: i * 0.1,
-              ease: "linear"
-            }}
-          />
-        ))}
-      </div>
-
-      <button
-        onClick={togglePlay}
-        className="group relative flex h-12 w-12 items-center justify-center border border-white/10 bg-black/80 backdrop-blur-md transition-all hover:border-cyber-cyan"
-      >
-        {isPlaying ? (
-          <Volume2 className="h-5 w-5 text-cyber-cyan group-hover:text-cyber-pink transition-colors" />
-        ) : (
-          <VolumeX className="h-5 w-5 text-muted-foreground group-hover:text-cyber-pink transition-colors" />
-        )}
-        <audio
-          ref={audioRef}
-          src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8b829671b.mp3?filename=cyberpunk-beat-112396.mp3" 
-          loop
-        />
-      </button>
-
-      {!isPlaying && (
-        <div className="absolute right-16 top-1/2 -translate-y-1/2 whitespace-nowrap text-xs font-mono text-cyber-cyan animate-pulse">
-          INITIALIZE SYSTEM &gt;&gt;
+    <button
+      onClick={(e) => {
+          e.stopPropagation(); // Prevent triggering generic click
+          toggleMute();
+      }}
+      className="p-3 bg-black/40 backdrop-blur-md rounded-full border border-white/10 hover:border-cyber-cyan/50 text-white/70 hover:text-cyber-cyan transition-all group shadow-[0_0_20px_rgba(0,0,0,0.5)]"
+    >
+      {isMuted ? (
+        <VolumeX className="w-5 h-5" />
+      ) : (
+        <div className="relative">
+             <Volume2 className="w-5 h-5" />
+             <div className="absolute inset-0 bg-cyber-cyan/20 blur-md rounded-full animate-pulse-slow opacity-0 group-hover:opacity-100" />
         </div>
       )}
-    </div>
+    </button>
   );
 }

@@ -1,0 +1,4 @@
+// This file is a placeholder for the noise texture (noise.png). 
+// Since I cannot generate a binary image directly, I will use a CSS radial gradient as a noise fallback in the layout if this file is not replaced.
+// Ideally, the user or a separate tool step would upload a real 'noise.png' to public/assets/noise.png.
+// For now, this is just a marker.

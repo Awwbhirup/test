@@ -17,7 +17,7 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-20 md:w-64 border-r border-white/10 bg-black/90 backdrop-blur-xl z-50 flex flex-col">
+    <aside className="fixed left-0 top-0 h-screen w-20 md:w-64 border-r border-white/10 bg-black/30 backdrop-blur-xl z-50 flex flex-col shadow-[10px_0_30px_0_rgba(0,0,0,0.3)]">
       {/* Header */}
       <div className="h-20 flex items-center justify-center md:justify-start md:px-8 border-b border-white/10 relative overflow-hidden group">
         <div className="absolute inset-0 bg-cyber-cyan/5 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500" />

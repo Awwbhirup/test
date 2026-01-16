@@ -1,5 +1,7 @@
 import dynamic from "next/dynamic";
+import { GlitchedText } from "@/components/ui/glitched-text";
 import { GlitchButton } from "@/components/ui/glitch-button";
+import HorizontalTracks from "@/components/marketing/horizontal-tracks";
 import { Marquee } from "@/components/ui/marquee";
 import { TextReveal } from "@/components/ui/text-reveal";
 import { GlassCard } from "@/components/ui/glass-card";
@@ -7,10 +9,7 @@ import { ArrowRight, Code2, Globe, Lock, Cpu, Palette } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
-const HeroScene = dynamic(() => import("@/components/canvas/hero-scene"), { 
-  ssr: false,
-  loading: () => <div className="absolute inset-0 z-0 bg-transparent" />
-});
+// HeroScene import removed to fix R3F crash
 
 export default function LandingPage() {
   return (
@@ -21,33 +20,54 @@ export default function LandingPage() {
          <Image src="/assets/img/debris-1.png" alt="debris" width={30} height={30} className="absolute bottom-1/3 right-20 opacity-30 animate-float delay-1000 rotate-45" />
       </div>
 
-      {/* Hero Content */}
-      <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden pt-20">
-        <div className="z-10 text-center space-y-8 mix-blend-difference flex flex-col items-center">
-          <p className="font-mono text-sm tracking-[0.5em] text-cyber-pink animate-pulse">
-            EST. 2026 // NEON_CITY
-          </p>
-          
-          <div className="flex flex-col items-center mb-4">
-              <TextReveal text="DEVSPACE" className="text-8xl md:text-[12rem] font-black tracking-tighter text-white leading-none" delay={0.2} />
-              <TextReveal text="HACKATHON" className="text-6xl md:text-[8rem] font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-white opacity-80" delay={0.4} />
-          </div>
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+         {/* Background Elements - Red Sun Theme */}
+         <div className="absolute inset-0 z-0">
+            <Image 
+              src="/assets/bg/hero-bg.png" 
+              alt="Red Sun Background" 
+              fill 
+              className="object-cover opacity-80"
+            />
+            {/* Overlay for text readability */}
+            <div className="absolute inset-0 bg-black/20" />
+         </div>
+         
+         {/* Gradient Overlay for Top Readability */}
+         <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/80 to-transparent z-10" />
 
-          <p className="max-w-xl text-lg font-light text-muted-foreground md:text-xl italic">
-            &quot;Leveraging Web3 for Social Responsibility&quot;
-          </p>
-
-          {/* CTA Buttons */}
+         <div className="container px-4 md:px-6 relative z-10 flex flex-col items-center text-center">
+            
+            <div className="mb-8 relative z-20">
+              <span className="inline-block px-3 py-1 mb-4 text-xs font-mono border border-cyber-cyan/30 text-cyber-cyan bg-cyber-cyan/5 rounded backdrop-blur-sm">
+                // SYSTEM_READY
+              </span>
+              <h1 className="text-6xl md:text-[10rem] font-black tracking-tighter text-white mb-2 mix-blend-difference drop-shadow-[0_0_15px_rgba(0,0,0,0.8)] whitespace-nowrap">
+                <GlitchedText 
+                  text="DEVSPACE" 
+                  options={{ html: true, letterize: true, steps: [3, 8] }} 
+                  glitchInterval={2500}
+                />
+              </h1>
+              <h2 className="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyber-pink to-cyber-cyan drop-shadow-lg">
+                <GlitchedText 
+                  text="2026 EDITION" 
+                  options={{ html: true, letterize: true, startFrom: "code" }}
+                />
+              </h2>
+            </div>
+          {/* CTA Buttons - Fluid Glassmorphism (No Glitch) */}
           <div className="flex flex-wrap gap-4 justify-center">
             <Link href="/login">
-              <GlitchButton className="bg-cyber-pink text-white border-cyber-pink hover:shadow-[0_0_20px_#ff003c]">
+              <div className="rounded-2xl backdrop-blur-xl bg-white/10 border border-white/20 shadow-lg px-8 py-4 text-white font-bold hover:bg-white/20 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]">
                 INITIALIZE_SYSTEM
-              </GlitchButton>
+              </div>
             </Link>
             <Link href="https://discord.gg" target="_blank">
-                <GlitchButton variant="outline" className="border-cyber-cyan text-cyber-cyan hover:bg-cyber-cyan/10">
+                <div className="rounded-2xl backdrop-blur-xl bg-white/5 border border-white/10 shadow-lg px-8 py-4 text-cyber-cyan font-bold hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(0,240,255,0.2)]">
                     JOIN_NETWORK
-                </GlitchButton>
+                </div>
             </Link>
           </div>
         </div>
@@ -86,96 +106,122 @@ export default function LandingPage() {
       {/* Visual Glue: Vertical Line */}
       <div className="w-[1px] h-[100px] bg-gradient-to-b from-transparent via-cyber-cyan/50 to-transparent mx-auto opacity-50 animate-pulse my-8" />
 
-      {/* Tracks Section - Katana Style */}
-      <section className="relative py-24 overflow-hidden bg-black">
-        <div className="container relative z-10">
-            <div className="flex items-center justify-center mb-12">
-                 <h2 className="font-sans text-xs font-bold uppercase tracking-[0.2em] text-[#8d8d8d] border border-white/10 px-4 py-1 rounded-full">
-                    TRACK 1: RESILIENCE
-                </h2>
-            </div>
+      {/* Intro / Visual Hook Section - "Flagship Hackathon" */}
+      <section className="relative py-32 overflow-hidden bg-[#e0dcd0] min-h-[80vh] flex flex-col items-center justify-center">
+        {/* Floating Katana - Background Layer - Pushed UP significantly */}
+         <div className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none opacity-60 mix-blend-multiply -translate-y-48">
+             <Image src="/assets/img/katana.png" alt="Katana" width={1100} height={350} className="animate-float-slow grayscale drop-shadow-2xl" />
+         </div>
+
+        <div className="container relative z-10 flex flex-col items-center">
             
-            <div className="relative flex flex-col items-center justify-center text-center">
-                 {/* Floating Katana */}
-                 <div className="absolute top-[-80px] left-1/2 -translate-x-1/2 w-[700px] md:w-[900px] z-20 pointer-events-none mix-blend-screen">
-                     <Image src="/assets/img/katana.png" alt="Katana" width={900} height={200} className="drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] animate-float-slow" />
-                 </div>
-                 
-                 <div className="relative z-10 mt-24 md:mt-32">
-                     <h1 className="text-6xl md:text-9xl font-bold text-[#beb0a6] mb-6 font-sans tracking-tighter leading-[0.9]">
-                        Fine! I&apos;ll<br/>do it Myself
-                     </h1>
-                     <p className="max-w-xl mx-auto text-[#8d8d8d] text-base md:text-lg leading-relaxed font-mono">
-                        &gt; Explore how systems handle failure by preserving context, guiding recovery, and staying useful.
-                     </p>
+            {/* Spacing to separate Text from Katana - Pushed DOWN */}
+            <div className="mt-80 relative flex flex-col items-center justify-center text-center">
+                 <div className="mb-8">
+                     <h2 className="font-sans text-xs font-bold uppercase tracking-[0.2em] text-[#555] border border-black/10 px-4 py-1 rounded-full bg-white/40 backdrop-blur-sm inline-block">
+                        TRACK 1: RESILIENCE
+                    </h2>
                  </div>
 
-                 {/* Idea Submission Badge */}
-                 <div className="absolute top-10 right-10 hidden md:block">
-                     <span className="bg-[#ff4d29] text-white px-6 py-2 rounded-full font-bold uppercase text-xs tracking-wider shadow-[0_0_20px_#ff4d29]">
-                        Idea Submission
-                     </span>
-                 </div>
-                 
-                 {/* Bottom Katana for Loop effect */}
-                 <div className="absolute bottom-[-150px] left-1/2 -translate-x-1/2 w-[800px] z-20 pointer-events-none opacity-30 blur-sm mix-blend-overlay">
-                     <Image src="/assets/img/katana.png" alt="Katana" width={800} height={200} className="rotate-180" />
+                 <div className="relative z-10">
+                     <h1 className="text-6xl md:text-9xl font-black text-[#1a1a1a] mb-8 font-sans tracking-tighter leading-[0.8] drop-shadow-2xl mix-blend-multiply whitespace-nowrap">
+                        CSI&apos;s Flagship<br/>Hackathon
+                     </h1>
+                     <p className="max-w-xl mx-auto text-[#333] text-base md:text-lg leading-relaxed font-mono bg-white/60 backdrop-blur-md p-6 rounded-2xl border border-black/5 shadow-[0_8px_32px_rgba(0,0,0,0.05)]">
+                        &gt; Explore how systems handle failure by preserving context, guiding recovery, and staying useful.
+                     </p>
                  </div>
             </div>
         </div>
       </section>
 
-       {/* Visual Glue: Marquee */}
-       <div className="py-4 bg-black border-y border-white/5 opacity-50">
-            <Marquee className="text-sm font-mono text-[#8d8d8d] tracking-widest uppercase">
-                SYSTEM NORMAL // INITIALIZING // DATE: 2026 // DEVSPACE // HACKATHON // READY PLAYER ONE //
-            </Marquee>
-       </div>
+      {/* Tracks Section - Horizontal Scroll */}
+      <HorizontalTracks />
 
-       {/* Timeline Section - Cream & Train */}
-      <section className="bg-cream py-24 relative overflow-hidden text-[#1a103c]">
-         <div className="container relative z-10">
-            <div className="flex flex-col md:flex-row items-center gap-12">
-                <div className="flex-1">
-                     <h2 className="mb-8 font-sans text-6xl font-black tracking-tighter sm:text-8xl">
-                      Time<br/>Line
-                    </h2>
-                    
-                    {/* Date Badge */}
-                    <div className="inline-block bg-[#ff4d29] p-6 rounded-xl text-white mb-20 shadow-xl transform -rotate-2 hover:rotate-0 transition-transform">
-                        <div className="text-2xl font-mono mb-2 border-b border-white/20 pb-2">CS HALL A</div>
-                        <div className="bg-[#e6e6e6] text-[#333] p-4 rounded text-center shadow-inner">
-                            <div className="text-sm font-bold uppercase tracking-wider">February</div>
-                            <div className="text-5xl font-black leading-none mt-1">12</div>
+      {/* Visual Glue: Marquee */}
+      <div className="py-4 bg-black border-y border-white/5 opacity-50 relative z-20">
+           <Marquee className="text-sm font-mono text-[#8d8d8d] tracking-widest uppercase">
+               SYSTEM NORMAL // NEO TOKYO // DATE: 2026 // DEVSPACE // HACKATHON // READY PLAYER ONE //
+           </Marquee>
+      </div>
+
+       {/* Timeline Section - Neo Tokyo Redesign */}
+      <section className="relative py-24 overflow-hidden min-h-screen flex items-center bg-black">
+          {/* Background Texture - Image 18 (Portal BG) Blurred & Darkened */}
+          <div className="absolute inset-0 z-0">
+               <Image 
+                src="/assets/bg/portal-bg.png" 
+                alt="Neo Tokyo Backdrop" 
+                fill 
+                className="object-cover blur-[3px] opacity-40 contrast-125"
+               />
+               <div className="absolute inset-0 bg-black/80 mix-blend-multiply" /> {/* Dark Overlay */}
+               <div className="absolute inset-0 bg-[url('/assets/img/grid-pattern.png')] opacity-10" />
+          </div>
+          
+         <div className="container relative z-10 max-w-6xl">
+             
+             <div className="flex flex-col lg:flex-row gap-16">
+                 {/* Neo Tokyo Left Column - Vertical Text */}
+                 <div className="hidden lg:flex flex-col items-center justify-center border-r border-[#ff4d29]/30 pr-8">
+                     <div 
+                        className="text-8xl font-black text-transparent bg-clip-text bg-gradient-to-b from-[#ff4d29] to-transparent opacity-80 select-none tracking-widest font-sans drop-shadow-[0_0_15px_rgba(255,77,41,0.5)]"
+                        style={{ writingMode: 'vertical-rl', textOrientation: 'upright' }}
+                     >
+                         作戦計画
+                     </div>
+                     <div className="mt-8 h-32 w-[2px] bg-[#ff4d29]" />
+                     <div 
+                        className="mt-4 text-[#ff4d29] font-mono text-xs tracking-widest uppercase"
+                        style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}
+                     >
+                         MISSION_PROTOCOL_V4
+                     </div>
+                 </div>
+
+                 {/* Content Grid */}
+                 <div className="flex-1">
+                     <div className="mb-12 flex items-end justify-between border-b border-white/10 pb-6">
+                        <div>
+                             <h2 className="text-6xl md:text-9xl font-bold tracking-tighter text-white">
+                                 TIME<span className="text-[#ff4d29]">LINE</span>
+                             </h2>
+                             <p className="text-white/60 font-mono text-lg mt-2">
+                                // OPERATION_NEO_TOKYO
+                             </p>
                         </div>
-                    </div>
-                </div>
+                        <div className="hidden md:block text-right">
+                            <div className="text-5xl font-black text-white/10">2026</div>
+                            <div className="text-[#ff4d29]/50 font-mono text-sm">ESTABLISHED</div>
+                        </div>
+                     </div>
 
-                <div className="flex-1 relative h-[500px] w-full">
-                    {/* Train Illustration */}
-                    <div className="absolute inset-0 z-10 flex items-center justify-center">
-                        <Image 
-                            src="/assets/img/train.png" 
-                            alt="Train" 
-                            fill 
-                            className="object-contain drop-shadow-2xl scale-125 hover:scale-130 transition-transform duration-700"
-                        />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {timeline.map((item, id) => (
+                            <div key={id} className="group relative bg-black/60 backdrop-blur-xl border border-white/10 hover:border-[#ff4d29]/80 p-10 min-h-[300px] flex flex-col justify-between rounded-none overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(255,77,41,0.2)]">
+                                {/* Decor Corners */}
+                                <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-[#ff4d29] opacity-0 group-hover:opacity-100 transition-opacity" />
+                                <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-[#ff4d29] opacity-0 group-hover:opacity-100 transition-opacity" />
+                                
+                                <div>
+                                    {/* Time Badge */}
+                                    <div className="inline-block px-4 py-2 bg-[#ff4d29]/10 border border-[#ff4d29]/20 text-[#ff4d29] font-mono text-sm mb-6">
+                                        {item.time}
+                                    </div>
+                                    
+                                    <h3 className="text-4xl font-bold mb-3 text-white group-hover:text-[#ff4d29] transition-colors">{item.title}</h3>
+                                    <p className="font-mono text-sm tracking-widest text-white/50 uppercase">{item.sub}</p>
+                                </div>
+                                
+                                {/* Background Glitch Element */}
+                                <div className="absolute top-1/2 right-4 -translate-y-1/2 text-9xl font-black text-white/5 select-none pointer-events-none group-hover:text-[#ff4d29]/10 transition-colors">
+                                    {id + 1}
+                                </div>
+                            </div>
+                        ))}
                     </div>
-                </div>
-            </div>
-
-            {/* Timeline Points Horizontal/Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-12 border-t-2 border-[#1a103c]/10 pt-12">
-                 {timeline.map((item, id) => (
-                    <div key={id} className="relative group pt-8 border-t border-[#1a103c] transition-all hover:-translate-y-2">
-                         {/* Dot */}
-                        <div className="absolute -top-[5px] left-0 h-2 w-2 rounded-full bg-[#ff4d29]" />
-                        <p className="font-mono text-xs opacity-60 mb-1 tracking-widest uppercase">{item.time}</p>
-                        <h3 className="text-xl font-bold mb-2 leading-tight group-hover:text-[#ff4d29] transition-colors">{item.title}</h3>
-                        <p className="text-sm opacity-80 font-medium">{item.sub}</p>
-                    </div>
-                 ))}
-            </div>
+                 </div>
+             </div>
          </div>
       </section>
 
