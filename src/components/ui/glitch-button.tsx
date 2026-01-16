@@ -17,10 +17,10 @@ export const GlitchButton = React.forwardRef<HTMLButtonElement, GlitchButtonProp
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         className={cn(
-          "relative px-8 py-3 font-bold uppercase tracking-widest text-sm transition-all duration-300 group overflow-hidden",
-          variant === "primary" && "bg-white text-black hover:bg-zinc-200",
+          "relative px-8 py-3 font-bold uppercase tracking-widest text-sm transition-all duration-300 group overflow-hidden glitch-hover",
+          variant === "primary" && "bg-white text-black hover:bg-cyber-cyan hover:text-black hover:shadow-[0_0_20px_#00f0ff]",
           variant === "secondary" && "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-          variant === "outline" && "border-2 border-white/20 text-white hover:border-white hover:bg-white/10",
+          variant === "outline" && "border-2 border-white/20 text-white hover:border-cyber-pink hover:bg-cyber-pink/10 hover:text-cyber-pink",
           className
         )}
         {...props}

@@ -11,6 +11,8 @@ export const metadata: Metadata = {
   description: "Leveraging Web3 for Social Responsibility. Flagship Hackathon by CSI-VIT.",
 };
 
+import { AudioPlayer } from "@/components/ui/audio-player";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -25,9 +27,10 @@ export default function RootLayout({
         {/* eslint-disable-next-line @next/next/no-page-custom-font */}
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
       </head>
-      <body className={cn("min-h-screen bg-background font-sans antialiased overflow-x-hidden selection:bg-white selection:text-black")}>
+      <body className={cn("min-h-screen bg-background font-sans antialiased overflow-x-hidden selection:bg-cyber-pink selection:text-black")}>
         <div className="grain-overlay" />
         {children}
+        <AudioPlayer />
       </body>
     </html>
   );
