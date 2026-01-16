@@ -69,162 +69,178 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Stats Ticker - Cyberpunk HUD */}
-      <div className="border-y border-cyber-cyan/20 bg-black/80 py-4 backdrop-blur-md relative overflow-hidden">
-        <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-cyber-cyan to-transparent opacity-50" />
-        <Marquee className="text-2xl font-bold uppercase tracking-widest text-white/80 font-mono">
-            {["3500+ Footfall", "12,000+ Participants", "₹10,00,000 Prize Pool"].map((stat, i) => (
-                 <div key={i} className="flex items-center gap-6 mx-8 group">
-                     <span className="h-2 w-2 bg-cyber-pink rotate-45 group-hover:animate-spin"></span>
-                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/50">{stat}</span>
-                 </div>
-            ))}
-        </Marquee>
-        <div className="absolute inset-x-0 bottom-0 h-[1px] bg-gradient-to-r from-transparent via-cyber-pink to-transparent opacity-50" />
-      </div>
-
-      {/* Tracks Section */}
-      <section className="relative py-32 overflow-hidden">
-         <Image 
-            src="/assets/img/polygon-bg.jpg" 
-            alt="Texture" 
-            fill 
-            className="object-cover mix-blend-overlay opacity-20 -z-20"
-        />
-        
+      {/* Tracks Section - Katana Style */}
+      <section className="relative py-32 overflow-hidden bg-black">
         <div className="container relative z-10">
-            <div className="flex items-end justify-between mb-16 border-b border-white/10 pb-8">
-                <div>
-                     <h2 className="font-sans text-5xl font-bold uppercase tracking-tighter sm:text-7xl text-white">
-                        Tracks
-                    </h2>
-                    <div className="h-1 w-20 bg-cyber-yellow mt-2" />
-                </div>
-                <Link href="/tracks" className="hidden md:flex items-center gap-2 text-cyber-cyan hover:text-white transition-colors">
-                    VIEW ALL PROTOCOLS <ArrowRight className="h-4 w-4" />
-                </Link>
+            <div className="flex items-center justify-center mb-16">
+                 <h2 className="font-sans text-sm font-bold uppercase tracking-widest text-[#8d8d8d]">
+                    TRACK 1
+                </h2>
             </div>
             
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {tracks.map((track, i) => (
-                <GlassCard key={i} className="group min-h-[300px] border-l-4 border-l-transparent hover:border-l-cyber-cyan transition-all" gradient={track.gradient}>
-                <div className="flex justify-between items-start mb-6">
-                    <div className="p-3 bg-white/5 rounded-lg group-hover:bg-cyber-cyan/20 transition-colors">
-                        <track.icon className="h-8 w-8 text-white/80 group-hover:text-cyber-cyan" />
-                    </div>
-                    <span className="text-xs font-mono text-white/30 border border-white/10 px-2 py-1 rounded">SYS_0{i+1}</span>
-                </div>
-                <h3 className="mb-4 font-sans text-2xl font-bold uppercase leading-none group-hover:text-cyber-cyan transition-colors">{track.title}</h3>
-                <p className="font-light text-muted-foreground leading-relaxed text-sm">{track.description}</p>
-                </GlassCard>
-            ))}
+            <div className="relative flex flex-col items-center justify-center text-center">
+                 {/* Floating Katana */}
+                 <div className="absolute top-[-100px] left-1/2 -translate-x-1/2 w-[800px] z-20 pointer-events-none">
+                     <Image src="/assets/img/katana.png" alt="Katana" width={800} height={200} className="drop-shadow-2xl animate-float-slow" />
+                 </div>
+                 
+                 <div className="relative z-10 mt-32">
+                     <h1 className="text-7xl md:text-9xl font-bold text-[#bfaea4] mb-4 font-sans tracking-tighter">
+                        Fine! I&apos;ll do it Myself
+                     </h1>
+                     <p className="max-w-2xl mx-auto text-[#8d8d8d] text-lg leading-relaxed">
+                        Explore how systems handle failure by preserving context, guiding recovery, and staying useful when things don&apos;t go as planned.
+                     </p>
+                 </div>
+
+                 {/* Idea Submission Badge */}
+                 <div className="absolute top-0 right-0">
+                     <span className="bg-[#ff4d29] text-white px-6 py-2 rounded-full font-bold uppercase text-xs tracking-wider shadow-[0_0_20px_#ff4d29]">
+                        Idea Submission
+                     </span>
+                 </div>
+                 
+                 {/* Bottom Katana for Loop effect */}
+                 <div className="absolute bottom-[-150px] left-1/2 -translate-x-1/2 w-[800px] z-20 pointer-events-none opacity-50 blur-sm">
+                     <Image src="/assets/img/katana.png" alt="Katana" width={800} height={200} className="rotate-180" />
+                 </div>
             </div>
         </div>
       </section>
 
-       {/* Timeline Section */}
-      <section className="border-t border-white/10 bg-black/90 py-32 relative">
-         <div className="container">
-            <h2 className="mb-20 text-center font-sans text-4xl font-bold uppercase tracking-tighter sm:text-6xl text-white">
-              Chronology
+       {/* Timeline Section - Cream & Train */}
+      <section className="bg-cream py-32 relative overflow-hidden text-[#1a103c]">
+         <div className="container relative z-10">
+            <h2 className="mb-8 font-sans text-6xl font-bold tracking-tighter sm:text-8xl">
+              Timeline
             </h2>
-            <div className="mx-auto max-w-4xl space-y-16 pl-8 border-l-2 border-white/10 relative">
-              {timeline.map((item, id) => (
-                <div key={id} className="relative pl-12 group">
-                  {/* Flashing Circle */}
-                  <div className="absolute -left-[25px] top-1 bg-black p-1">
-                      <Image 
-                        src="/assets/img/flashing-circle.png" 
-                        alt="Bullet" 
-                        width={40} 
-                        height={40} 
-                        className="animate-spin-slow opacity-80 group-hover:opacity-100 group-hover:sepia transition-all" 
-                      />
-                  </div>
-                  
-                  <div className="flex flex-col md:flex-row md:items-center gap-4 mb-2">
-                    <span className="w-fit rounded border border-cyber-pink/30 bg-cyber-pink/10 px-3 py-1 font-mono text-xs text-cyber-pink">
-                        {item.time}
-                    </span>
-                    <h3 className="text-2xl font-bold group-hover:text-cyber-pink transition-colors">{item.title}</h3>
-                  </div>
-                  <p className="text-muted-foreground max-w-lg">{item.description}</p>
+            
+            {/* Date Badge */}
+            <div className="inline-block bg-[#ff4d29] p-6 rounded-xl text-white mb-20 shadow-lg transform -rotate-3">
+                <div className="text-2xl font-mono mb-2">cs hall</div>
+                <div className="bg-[#e6e6e6] text-[#333] p-4 rounded text-center">
+                    <div className="text-sm font-bold">FEB</div>
+                    <div className="text-4xl font-black">12</div>
                 </div>
-              ))}
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+                {/* Train Illustration */}
+                <div className="relative h-[400px] w-full">
+                    <Image 
+                        src="/assets/img/train.png" 
+                        alt="Train" 
+                        fill 
+                        className="object-contain object-left-bottom drop-shadow-2xl"
+                    />
+                </div>
+
+                {/* Timeline Points */}
+                <div className="space-y-12 border-l-4 border-[#2d3a5e] pl-8 relative">
+                    {timeline.map((item, id) => (
+                        <div key={id} className="relative group">
+                            {/* Dot */}
+                            <div className="absolute -left-[42px] top-1 h-5 w-5 rounded-full bg-[#5b7c99] border-4 border-cream" />
+                            
+                            <h3 className="text-3xl font-bold mb-2">{item.title}</h3>
+                            <p className="font-mono text-sm opacity-60 mb-1 tracking-widest uppercase">{item.sub}</p>
+                            <p className="text-xl font-medium opacity-80">{item.time}</p>
+                        </div>
+                    ))}
+                </div>
             </div>
          </div>
       </section>
 
-      {/* Sponsors */}
-      <section className="py-24 bg-black relative border-t border-cyber-yellow/20">
-          <h2 className="mb-12 text-center font-jp text-sm uppercase tracking-widest text-cyber-yellow">
-            SUPPORTED_BY
-          </h2>
-          <Marquee direction="left" className="text-6xl font-black text-white/5 font-clash">
-            <span className="mx-16 hover:text-white/20 transition-colors">GOOGLE</span>
-            <span className="mx-16 hover:text-white/20 transition-colors">MICROSOFT</span>
-            <span className="mx-16 hover:text-white/20 transition-colors">GITHUB</span>
-            <span className="mx-16 hover:text-white/20 transition-colors">ETHEREUM</span>
-            <span className="mx-16 hover:text-white/20 transition-colors">ORACLE</span>
-          </Marquee>
+      {/* Sponsors - Bento Grid */}
+      <section className="py-24 bg-[#111] relative text-white">
+          <div className="container">
+              <div className="flex justify-between items-end mb-12">
+                   <h2 className="text-6xl font-bold tracking-tighter">Sponsor</h2>
+                   <div className="bg-[#ff4d29] text-white px-6 py-2 rounded-full font-bold uppercase text-xs tracking-wider">
+                        Idea Submission
+                   </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-[600px]">
+                  {/* Large Card - Camera */}
+                  <div className="row-span-2 relative overflow-hidden rounded-3xl border border-white/10 bg-[#0a0a0a] group">
+                      <Image 
+                        src="/assets/img/camera.png" 
+                        alt="Camera" 
+                        fill 
+                        className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute bottom-8 left-8">
+                          <h3 className="text-2xl font-bold">WOLFRAM</h3>
+                      </div>
+                  </div>
+                  
+                  {/* Stat Card */}
+                  <div className="bg-[#1a1a1a] rounded-3xl p-8 flex flex-col justify-center items-center text-center border border-white/10 hover:border-[#ff4d29] transition-colors">
+                      <p className="text-muted-foreground mb-4">Insert some statistic</p>
+                      <h3 className="text-5xl font-bold mb-4">Key feature</h3>
+                       <p className="text-muted-foreground">Insert some statistic or metric name</p>
+                  </div>
+
+                  {/* Rating Card */}
+                  <div className="bg-[#1a1a1a] rounded-3xl p-8 flex flex-col justify-center items-center text-center border border-white/10">
+                       <div className="flex gap-1 text-[#ff4d29] mb-4">
+                           {[...Array(5)].map((_,i) => <span key={i}>★</span>)}
+                       </div>
+                       <h3 className="text-6xl font-bold mb-2">100k</h3>
+                       <p className="text-2xl text-muted-foreground">users rated it</p>
+                  </div>
+
+                  {/* Wide Wolframe Card */}
+                  <div className="col-span-1 md:col-span-2 bg-[#1a1a1a] rounded-3xl p-8 flex items-center justify-center border border-white/10 relative overflow-hidden">
+                       {/* Smoke Effect */}
+                        <Image 
+                            src="/assets/img/smoke.png" 
+                            alt="Smoke" 
+                            width={300} 
+                            height={100} 
+                            className="absolute bottom-0 left-0 opacity-50"
+                        />
+                       <h3 className="text-5xl font-bold relative z-10">Wolframe</h3>
+                  </div>
+                  
+                   {/* Polaroid Card (using smoke/texture as placeholder for now) */}
+                  <div className="relative bg-[#ebe9e0] rounded-sm p-4 rotate-3 transform hover:rotate-0 transition-transform duration-300 w-64 h-72 mx-auto md:mx-0 shadow-xl">
+                      <div className="bg-black h-48 w-full mb-4 relative overflow-hidden">
+                           <Image src="/assets/img/smoke.png" alt="Polaroid" fill className="object-cover opacity-80" />
+                      </div>
+                      <p className="font-handwriting text-black text-sm text-center -rotate-2">
+                          wolframe tagline or smthing bro idk okay?
+                      </p>
+                      <div className="absolute -top-4 left-1/2 -translate-x-1/2 text-red-500 text-4xl">📌</div>
+                  </div>
+              </div>
+          </div>
       </section>
     </div>
   );
 }
 
-const tracks = [
-  {
-    title: "Adaptive Systems",
-    description: "Systems that learn from user behavior.",
-    icon: Globe,
-    gradient: "from-cyan-500/20 to-blue-500/20",
-  },
-  {
-    title: "Digital Archaeology",
-    description: "Modern software working with old protocols.",
-    icon: Lock,
-    gradient: "from-amber-500/20 to-orange-500/20",
-  },
-  {
-    title: "Zero Trust Zone",
-    description: "Security and verification baked in.",
-    icon: Lock,
-    gradient: "from-green-500/20 to-emerald-500/20",
-  },
-  {
-    title: "Minds in the Machine",
-    description: "Software that learns patterns.",
-    icon: Cpu,
-    gradient: "from-purple-500/20 to-pink-500/20",
-  },
-  {
-    title: "Creative Code",
-    description: "Tools that amplify creativity.",
-    icon: Palette,
-    gradient: "from-pink-500/20 to-rose-500/20",
-  },
-   {
-    title: "Eco-Tech Synergy",
-    description: "Optimizing for sustainable compute.",
-    icon: Globe,
-    gradient: "from-green-500/20 to-emerald-500/20",
-  },
-];
-
 const timeline = [
   {
-    time: "Feb 12 - 09:00 PM",
-    title: "The Arrival",
-    description: "Check-in begins at the venue.",
+    time: "till 6PM",
+    title: "round 0",
+    sub: "online idea submission"
   },
   {
-    time: "Feb 12 - 10:00 PM",
-    title: "Initialization",
-    description: "Opening Ceremony & Problem Statements revealed.",
+    time: "9PM",
+    title: "check in",
+    sub: "report to the venue"
   },
   {
-    time: "Feb 14 - 09:00 PM",
-    title: "System Shutdown",
-    description: "Submission deadline. Coding ends.",
+    time: "10:30PM",
+    title: "opening ceremony",
+    sub: "inauguration ceremony by the csi team"
+  },
+  {
+    time: "11:00PM",
+    title: "something",
+    sub: "something idk man"
   },
 ];
